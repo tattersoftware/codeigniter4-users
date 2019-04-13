@@ -1,2 +1,2 @@
 # codeigniter4-users
-Lightweight user authorization for CodeIgniter 4
+Lightweight user authentication for CodeIgniter 4
