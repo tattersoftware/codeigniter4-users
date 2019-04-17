@@ -5,7 +5,7 @@ use CodeIgniter\Database\ConnectionInterface;
 
 class Services extends BaseService
 {
-    public static function permits(BaseConfig $config = null, ConnectionInterface $db = null, bool $getShared = true)
+    public static function users(BaseConfig $config = null, ConnectionInterface $db = null, bool $getShared = true)
     {
 		if ($getShared):
 			return static::getSharedInstance('users', $db, $config);

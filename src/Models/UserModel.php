@@ -10,22 +10,17 @@ class UserModel extends Model
 	protected $returnType = 'Tatter\Users\Entities\User';
 	protected $useSoftDeletes = true;
 
-	protected $allowedFields = [ ];
+	protected $allowedFields = [
+		'username', 'firstname', 'lastname', 'email',
+		'password', 'disabled', 'verified_at',
+	];
 
 	protected $useTimestamps = true;
 
-	protected $validationRules    = [];
+	protected $validationRules    = [
+		'username'     => 'required|alpha_numeric_space|min_length[3]|is_unique[users.username,id,{id}',
+		'email'        => 'required|valid_email|is_unique[users.email,id,{id}]'
+	];
 	protected $validationMessages = [];
-	protected $skipValidation     = true;
-	
-	// https://github.com/lonnieezell/myth-auth/blob/develop/src/Authorization/GroupModel.php
-	public function groups($userId = null): array
-	{
-		return $this->builder()
-			->select('groups.id')
-			->join($this->groupsPivot, "{$this->groupsPivot}.{$this->pivotKey} = {$this->table}.{$this->primaryKey}", 'left')
-			->join('groups', "{$this->groupsPivot}.group_id = groups.id", 'left')
-			->where("{$this->groupsPivot}.{$this->pivotKey}", $userId)
-			->get()->getResultObject();
-	}
+	protected $skipValidation     = false;
 }
