@@ -18,5 +18,5 @@ $routes->group('', ['namespace' => 'Tatter\Users\Controllers'], function($routes
 	$routes->get( 'reset',    'Users::reset', ['as' => 'reset']);
 	$routes->post('reset',    'Users::reset');
 	
-	$routes->get( 'verify',    'Users::verify', ['as' => 'verify']);
+	$routes->get( 'verify',   'Users::verify', ['as' => 'verify']);
 });

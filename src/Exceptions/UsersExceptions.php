@@ -24,4 +24,9 @@ class UsersException extends FrameworkException implements ExceptionInterface
 	{
 		return new static(lang('Users.missingLoginField'));
 	}
+	
+	public static function forGeneralFailure()
+	{
+		return new static(lang('Users.generalFailure'));
+	}
 }

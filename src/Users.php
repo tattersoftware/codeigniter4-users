@@ -144,6 +144,12 @@ class Users
 		return $this->userId;
 	}
 	
+	// returns config so controller can use the same settings
+	public function getConfig()
+	{
+		return $this->config;
+	}
+	
 	// returns messages
 	public function getMessages(): array
 	{
@@ -154,130 +160,6 @@ class Users
 	public function getStatus(): string
 	{
 		return $this->status;
-	}
-	
-	// registers a new user
-	public function register($user)
-	{
-		// check if verification is required
-		if ($this->config->verifyMethod == 'none')
-			$user->verified_at = date('Y-m-d H:i:s');
-
-		// add to the database
-		$userId = $this->users->insert($user);
-		
-		// make sure all went well
-		if (empty($userId)):
-			$this->status = 'error';
-			$this->messages = $this->users->errors();
-			return false;
-		endif;
-		
-		// get the new user
-		$user = $this->users->find($userId);
-		
-		// notify log & event
-		log_message('debug', "Tatter\\Users :: User #{$user->id} '{$row->username}' successfully registered");
-		Events::trigger('register', $user);
-		
-		// if email verification is required, send the email
-		if ($this->config->verifyMethod == 'email')
-			$this->email('verify', $user);
-		// otherwise login the user
-		else
-			$this->login($user, AUTH_FORMAL);
-				
-		return $user;
-	}
-	
-	// attempt to match a user by form credentials [field, login, password]
-	public function attempt($credentials)
-	{
-		// save the url
-		$this->session->returnTo = $this->session->returnTo ?? current_url();
-		
-		// record the attempt
-		$request = Services::request();
-		$row = [
-			'status'      => 'attempt',
-			'login'       => $credentials['login'],
-			'ip_address'  => ip2long($request->getIPAddress()),
-			'agent'       => (string)$request->getUserAgent(),
-		];
-		$attemptId = $this->attempts->insert($row);
-		$attempt = $this->attempts->find($attemptId);
-
-		// shouldn't happen
-		if (! in_array($credentials['field'], ['email', 'username']) ):
-			// log the error
-			$error = lang('Users.missingLoginField', $depth);
-			$this->status = 'error';
-			$this->messages[] = $error;
-			log_message('error', "Tatter\\Users :: {$error}");
-			
-			// check whether to throw
-			if ($this->config->silent):
-				return false;
-			else:
-				throw UsersException::forMissingLoginField();
-			endif;
-		endif;
-		
-		// try to find the user
-		$user = $this->users
-			->where($credentials['field'], $credentials['login'])
-			->first();
-				
-		// no user matched
-		if (empty($user))
-			return $this->failure($attempt, 'userNotFound', $credentials['field']);
-		
-		// add the user ID to the attempt
-		$attempt->user_id = $user->id;
-		
-		// verify password
-		$result = password_verify(
-			base64_encode(hash('sha512', $credentials['password'], true)),
-			$user->password
-		);
-		if (! $result)
-			return $this->failure($attempt, 'invalidPassword');
-		
-        // https://github.com/lonnieezell/myth-auth/blob/develop/src/Authentication/LocalAuthenticator.php
-		// Check to see if the password needs to be rehashed due to the hash algorithm or hash
-        // cost changing since the last time that a user logged in.
-		if (password_needs_rehash($user->password, PASSWORD_DEFAULT)):
-			$user->password = $credentials['password'];
-			$this->users->save($user);
-		endif;
-		
-		// check if user is disabled
-		if ($user->disabled)
-			return $this->failure($attempt, 'accountDisabled');
-		
-		// make sure account is verified
-		if ($this->config->verifyMethod && ! $user->verified_at)
-			return $this->failure($attempt, 'accountUnverified');
-		
-		// update the attempt record
-		$attempt->status = 'success';
-		$this->attempts->save($attempt);
-		
-		return $user;
-	}
-	
-	// handles failed form attempts
-	protected function failure($attempt, $errorName, ...$arguments)
-	{
-		// update the attempt record
-		$attempt->status = $errorName;
-		$this->attempts->save($attempt);
-		
-		// set class variables
-		$this->status = 'error';
-		$this->messages[] = lang("Users.{$errorName}", $arguments);
-
-		return false;
 	}
 	
 	// sets the logged in user; $user should be verified and not disabled
@@ -329,14 +211,6 @@ class Users
 		// trigger logout event
 		Events::trigger('logout', $userId);
 	}
-		
-	// returns to the page that requested the authentication
-	public function redirect()
-	{
-		$url = $this->session->returnTo ?? base_url();
-		$this->session->remove('returnTo');
-		redirect()->to($url);
-	}
 	
 	// stores/removes login cookies using a token
 	public function remember($user = null)
@@ -361,7 +235,8 @@ class Users
 		$this->tokens->insert($row);
 	}
 	
-	public function authenticate(int $depth = 2): bool
+	// require authentication up to $depth
+	public function authenticate(int $depth = 2)
 	{
 		// reset status
 		$this->status = 'success';
@@ -372,36 +247,12 @@ class Users
 		if ($this->userId && $this->depth<=$depth)
 			return $this->userId;
 		
-		// handle request by depth
-		switch ($depth):
-
-			// attempt cookie and quit
-			case AUTH_TRIVIAL: return $this->cookie(); break;
-
-			// attempt cookie, fall back to username/password
-			case AUTH_CASUAL: return $this->cookie() ?: $this->view('login'); break;
+		// fail anything other than cookie requests
+		if ($depth > AUTH_CASUAL)
+			return false;
 		
-			// attempt form
-			case AUTH_FORMAL: return $this->view('login'); break;
-					
-			// attempt dual
-			case AUTH_SECURE: return $this->dual(); break;
-
-			// error out by default		
-			default:
-				// log the error
-				$error = lang('Users.invalidDepth', $depth);
-				$this->status = 'error';
-				$this->messages[] = $error;
-				log_message('error', "Tatter\\Users :: {$error}");
-				
-				// check whether to throw
-				if ($this->config->silent):
-					return false;
-				else:
-					throw UsersException::forInvalidDepth();
-				endif;
-		endswitch;
+		// otherwise check cookie
+		return $this->cookie();
 	}
 	
 	// use encrypted cookie content to match a user
@@ -433,7 +284,7 @@ class Users
 		
 		// login the corresponding user
 		$this->login($user->id, AUTH_CASUAL);
-		
+
 		return true;
 	}
 	
@@ -441,17 +292,6 @@ class Users
 	protected function dual()
 	{
 		throw UsersException::forUnsupportedMethod('Dual');
-	}
-	
-	// display the requested view (with header & footer)
-	public function view($name, $data = [])
-	{		
-		// load each view
-		foreach (['header', $name, 'footer'] as $view):
-			if (! empty($view)):
-				echo view($this->config->views[$view], $data);
-			endif;
-		endforeach;
 	}
 	
 	// sends the specified user a pre-composed email
@@ -471,6 +311,7 @@ class Users
 			$content = hash('sha256', bin2hex(random_bytes(20)) );
 		
 			// store the token
+			$request = Services::request();
 			$row = [
 				'type'        => $type,
 				'content'     => $content,

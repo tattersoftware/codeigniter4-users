@@ -11,4 +11,5 @@ return [
 	'invalidPassword'       => 'Your password did not match',
 	'accountDisabled'       => 'Your account has been disabled',
 	'accountUnverfied'      => 'Your account is awaiting verification',
+	'generalFailure'        => 'Failure in authentication system',
 ];
