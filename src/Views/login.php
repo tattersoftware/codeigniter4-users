@@ -1,3 +1,4 @@
+<?= view($config->views['header']) ?>
 
 	<div id="container" class="users-view users-login">
 		<h1>Login</h1>
@@ -36,3 +37,5 @@
 
 		<p>Or, <?=anchor(route_to('register'), 'sign up now' ) ?> for an account.</p>
 	</div>
+
+<?= view($config->views['footer']) ?>

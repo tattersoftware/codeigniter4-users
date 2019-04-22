@@ -163,7 +163,7 @@ class Users
 	}
 	
 	// sets the logged in user; $user should be verified and not disabled
-	protected function login($user, int $depth)
+	public function login($user, int $depth)
 	{
 		// update class properties
 		$this->userId = $user->id;
@@ -179,6 +179,7 @@ class Users
 			'agent'            => (string)$request->getUserAgent(),
 			'depth'            => $depth,
 			'impersonated_by'  => ($this->session->userId == $user->id)? null : $this->session->userId,
+			'created_at'       => date('Y-m-d H:i:s'),
 		];
 		$loginId = $this->logins->insert($row);
 		
@@ -210,6 +211,8 @@ class Users
 		
 		// trigger logout event
 		Events::trigger('logout', $userId);
+		
+		return $userId;
 	}
 	
 	// stores/removes login cookies using a token
@@ -224,6 +227,7 @@ class Users
 		set_cookie('tatter.users', $content, $this->config->rememberFor);
 		
 		// store the token
+		$request = Services::request();
 		$row = [
 			'type'        => 'remember',
 			'content'     => $content,

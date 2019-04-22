@@ -8,8 +8,6 @@ class Migration_create_table_users extends Migration
 	{
 		$fields = [
 			'username'       => ['type' => 'VARCHAR', 'constraint' => 63],
-			'firstname'      => ['type' => 'VARCHAR', 'constraint' => 63],
-			'lastname'       => ['type' => 'VARCHAR', 'constraint' => 63],
 			'email'          => ['type' => 'VARCHAR', 'constraint' => 63],
 			'password'       => ['type' => 'VARCHAR', 'constraint' => 255],
 			'disabled'       => ['type' => 'BOOLEAN', 'default' => 0],

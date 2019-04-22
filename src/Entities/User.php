@@ -6,8 +6,6 @@ class User extends Entity
 {
 	protected $id;
 	protected $username;
-	protected $firstname;
-	protected $lastname;
 	protected $email;
 	protected $password;
 	protected $disabled;
@@ -21,6 +19,22 @@ class User extends Entity
 		'casts' => [],
 		'datamap' => []
 	];
+
+    public function setCreatedAt(string $dateString)
+    {
+        $this->created_at = new Time($dateString, 'UTC');
+        return $this;
+    }
+
+    public function getCreatedAt(string $format = 'Y-m-d H:i:s')
+    {
+        // Convert to CodeIgniter\I18n\Time object
+        $this->created_at = $this->mutateDate($this->created_at);
+        $timezone = $this->timezone ?? app_timezone();
+        $this->created_at->setTimezone($timezone);
+
+        return $this->created_at->format($format);
+    }
 	
 	// Automatically hashes the password when set.
 	// https://github.com/lonnieezell/myth-auth/blob/develop/src/Entities/User.php

@@ -56,6 +56,7 @@ class Users extends Controller
 			'login'       => $credentials['login'],
 			'ip_address'  => ip2long($request->getIPAddress()),
 			'agent'       => (string)$request->getUserAgent(),
+			'created_at'       => date('Y-m-d H:i:s'),
 		];
 		$attemptId = $attempts->insert($row);
 		$attempt = $attempts->find($attemptId);
@@ -134,7 +135,7 @@ class Users extends Controller
 		
 		// update the attempt record
 		$attempt->status = 'success';
-		$this->attempts->save($attempt);
+		$attempts->save($attempt);
 
 		// login the user
 		$this->users->login($user, AUTH_FORMAL);
@@ -150,6 +151,12 @@ class Users extends Controller
 		$url = $this->session->returnTo ?? base_url();
 		$this->session->remove('returnTo');
 		return redirect()->to($url);
+	}
+	
+	public function logout()
+	{
+		$this->users->logout();
+		return redirect()->back();
 	}
 	
 	public function pending()

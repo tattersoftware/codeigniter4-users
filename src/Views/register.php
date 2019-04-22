@@ -1,4 +1,4 @@
-<?= view($config['views']['header']) ?>
+<?= view($config->views['header']) ?>
 
 	<div id="container" class="users-view users-register">
 		<h1>Register</h1>
@@ -48,4 +48,4 @@ session()->human = $val1 + $val2;
 		<p>Or, <?= anchor(session('returnTo'), "sign in now" ) ?> with an existing account.</p>
 	</div>
 
-<?= view($config['views']['footer']) ?>
+<?= view($config->views['footer']) ?>

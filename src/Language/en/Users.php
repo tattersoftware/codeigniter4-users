@@ -10,6 +10,6 @@ return [
 	'userNotFound'          => 'Your {0} did not match.',
 	'invalidPassword'       => 'Your password did not match',
 	'accountDisabled'       => 'Your account has been disabled',
-	'accountUnverfied'      => 'Your account is awaiting verification',
+	'accountUnverified'     => 'Your account is awaiting verification',
 	'generalFailure'        => 'Failure in authentication system',
 ];
