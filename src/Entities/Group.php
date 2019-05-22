@@ -10,10 +10,5 @@ class Group extends Entity
 	protected $created_at;
 	protected $updated_at;
 	
-	protected $_options = [
-		'dates' => ['created_at', 'updated_at'],
-		'casts' => [],
-		'datamap' => []
-	];
-	
+	protected $dates = ['created_at', 'updated_at'];	
 }

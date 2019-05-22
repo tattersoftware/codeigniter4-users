@@ -4,21 +4,7 @@ use CodeIgniter\Entity;
 
 class User extends Entity
 {
-	protected $id;
-	protected $username;
-	protected $email;
-	protected $password;
-	protected $disabled;
-	protected $deleted;
-	protected $created_at;
-	protected $verified_at;
-	protected $updated_at;
-	
-	protected $_options = [
-		'dates' => ['created_at', 'verified_at', 'updated_at'],
-		'casts' => [],
-		'datamap' => []
-	];
+	protected $dates = ['created_at', 'verified_at', 'updated_at'];
 
     public function setCreatedAt(string $dateString)
     {
