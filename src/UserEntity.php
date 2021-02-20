@@ -1,12 +1,12 @@
-<?php namespace Tatter\Interfaces\User\Entities;
-
-use Sparks\Shield\Entities\User;
-use RuntimeException;
+<?php namespace Tatter\Users;
 
 /**
- * Shield User Entity
+ * User Interface
+ *
+ * Provides a common interface for
+ * classes representing a user.
  */
-class ShieldEntity extends User
+interface UserEntity
 {
 	/**
 	 * Returns the name of the column used to
@@ -14,10 +14,7 @@ class ShieldEntity extends User
 	 *
 	 * @return string
 	 */
-	public function getIdentifier(): string
-	{
-		return 'id';
-	}
+	public function getIdentifier(): string;
 
 	/**
 	 * Returns the value for the identifier,
@@ -25,20 +22,21 @@ class ShieldEntity extends User
 	 *
 	 * @return string|int|null
 	 */
-	public function getId()
-	{
-		return $this->attributes['id'] ?? null;
-	}
+	public function getId();
+
+	/**
+	 * Returns the email address.
+	 *
+	 * @return string|null
+	 */
+	public function getEmail(): ?string;
 
 	/**
 	 * Returns the username.
 	 *
 	 * @return string|null
 	 */
-	public function getUsername(): ?string
-	{
-		return $this->attributes['username'] ?? null;
-	}
+	public function getUsername(): ?string;
 
 	/**
 	 * Returns the name for this user.
@@ -48,10 +46,7 @@ class ShieldEntity extends User
 	 *
 	 * @return string|null
 	 */
-	public function getName(): ?string
-	{
-		throw new RuntimeException('That attribute is not supported');
-	}
+	public function getName(): ?string;
 
 	/**
 	 * Returns whether this user is eligible
@@ -59,8 +54,5 @@ class ShieldEntity extends User
 	 *
 	 * @return bool
 	 */
-	public function isActive(): bool
-	{
-		return $this->attributes['active'] ?? false;
-	}
+	public function isActive(): bool;
 }

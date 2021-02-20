@@ -1,13 +1,14 @@
 {
 	"name": "tatter/interfaces",
 	"type": "library",
-	"description": "Common interfaces for CodeIgniter 4",
+	"description": "User interfaces and provider for CodeIgniter 4",
 	"keywords": [
 		"codeigniter",
 		"codeigniter4",
-		"interfaces"
+		"authentication",
+		"users"
 	],
-	"homepage": "https://github.com/tattersoftware/codeigniter4-interfaces",
+	"homepage": "https://github.com/tattersoftware/codeigniter4-users",
 	"license": "MIT",
 	"authors": [
 		{
@@ -22,11 +23,13 @@
 	},
 	"require-dev": {
 		"codeigniter4/codeigniter4": "dev-develop",
+		"lonnieezell/codigniter-shield": "dev-develop",
+		"myth/auth": "dev-develop",
 		"tatter/tools": "^1.6"
 	},
 	"autoload": {
 		"psr-4": {
-			"Tatter\\Interfaces\\": "src"
+			"Tatter\\Users\\": "src"
 		},
 		"exclude-from-classmap": [
 			"**/Database/Migrations/**"
@@ -36,6 +39,14 @@
 		{
 			"type": "vcs",
 			"url": "https://github.com/codeigniter4/CodeIgniter4"
+		},
+		{
+			"type": "vcs",
+			"url": "https://github.com/lonnieezell/codigniter-shield"
+		},
+		{
+			"type": "vcs",
+			"url": "https://github.com/lonnieezell/myth-auth"
 		}
 	],
 	"minimum-stability": "dev",

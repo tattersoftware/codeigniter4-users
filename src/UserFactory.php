@@ -1,4 +1,4 @@
-<?php namespace Tatter\Interfaces\User;
+<?php namespace Tatter\Users;
 
 /**
  * User Factory Interface

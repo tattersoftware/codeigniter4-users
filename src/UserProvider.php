@@ -1,4 +1,4 @@
-<?php namespace Tatter\Interfaces\User;
+<?php namespace Tatter\Users;
 
 /**
  * User Provider Class
@@ -22,7 +22,7 @@ class UserProvider
 	/**
 	 * Returns the array of known factories
 	 *
-	 * @return string[]
+	 * @return array<string,string>
 	 */
 	public static function getFactories(): array
 	{
@@ -32,7 +32,9 @@ class UserProvider
 	/**
 	 * Sets the array of known factories.
 	 *
-	 * @param array<string,string>
+	 * @param array<string,string> $factories
+	 *
+	 * @return void
 	 */
 	public static function setFactories(array $factories): void
 	{

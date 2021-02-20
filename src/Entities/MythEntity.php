@@ -1,12 +1,13 @@
-<?php namespace Tatter\Interfaces\User\Entities;
+<?php namespace Tatter\Users\Entities;
 
 use Myth\Auth\Entities\User;
+use Tatter\Users\UserEntity;
 use RuntimeException;
 
 /**
  * Myth User Entity
  */
-class MythEntity extend User
+class MythEntity extends User implements UserEntity
 {
 	/**
 	 * Returns the name of the column used to

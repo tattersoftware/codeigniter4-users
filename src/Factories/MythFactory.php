@@ -1,22 +1,21 @@
-<?php namespace Tatter\Interfaces\User\Factories;
+<?php namespace Tatter\Users\Factories;
 
-use Sparks\Shield\Models\UserModel;
-use Tatter\Interfaces\User\Entities\ShieldEntity;
-use Tatter\Interfaces\User\ShieldEntity;
-use Tatter\Interfaces\User\UserFactory;
+use Myth\Auth\Models\UserModel;
+use Tatter\Users\Entities\MythEntity;
+use Tatter\Users\UserEntity;
+use Tatter\Users\UserFactory;
 
 /**
  * Myth User Factory
  */
-class ShieldFactory extends UserModel implements UserFactory
+class MythFactory extends UserModel implements UserFactory
 {
-
 	/**
 	 * The format that the results should be returned as.
 	 *
 	 * @var string
 	 */
-    protected $returnType = ShieldEntity::class;
+    protected $returnType = MythEntity::class;
 
 	/**
 	 * Locates a user by its primary identifier.
@@ -25,7 +24,7 @@ class ShieldFactory extends UserModel implements UserFactory
 	 *
 	 * @return UserEntity|null
 	 */
-	public function findById($id): ?ShieldEntity
+	public function findById($id): ?MythEntity
 	{
 		return $this->find($id);
 	}
@@ -37,7 +36,7 @@ class ShieldFactory extends UserModel implements UserFactory
 	 *
 	 * @return UserEntity|null
 	 */
-	public function findByEmail(string $email): ?ShieldEntity
+	public function findByEmail(string $email): ?MythEntity
 	{
 		return $this->where('email', $email)->first();
 	}
@@ -49,7 +48,7 @@ class ShieldFactory extends UserModel implements UserFactory
 	 *
 	 * @return UserEntity|null
 	 */
-	public function findByUsername(string $username): ?ShieldEntity
+	public function findByUsername(string $username): ?MythEntity
 	{
 		return $this->where('username', $username)->first();
 	}
