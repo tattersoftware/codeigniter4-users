@@ -22,7 +22,7 @@ class MythFactory extends UserModel implements UserFactory
 	 *
 	 * @param string|int $id
 	 *
-	 * @return UserEntity|null
+	 * @return MythEntity|null
 	 */
 	public function findById($id): ?MythEntity
 	{
@@ -34,7 +34,7 @@ class MythFactory extends UserModel implements UserFactory
 	 *
 	 * @param string $email
 	 *
-	 * @return UserEntity|null
+	 * @return MythEntity|null
 	 */
 	public function findByEmail(string $email): ?MythEntity
 	{
@@ -46,7 +46,7 @@ class MythFactory extends UserModel implements UserFactory
 	 *
 	 * @param string $username
 	 *
-	 * @return UserEntity|null
+	 * @return MythEntity|null
 	 */
 	public function findByUsername(string $username): ?MythEntity
 	{

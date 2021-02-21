@@ -23,7 +23,7 @@ class ShieldFactory extends UserModel implements UserFactory
 	 *
 	 * @param string|int $id
 	 *
-	 * @return UserEntity|null
+	 * @return ShieldEntity|null
 	 */
 	public function findById($id): ?ShieldEntity
 	{
@@ -35,7 +35,7 @@ class ShieldFactory extends UserModel implements UserFactory
 	 *
 	 * @param string $email
 	 *
-	 * @return UserEntity|null
+	 * @return ShieldEntity|null
 	 */
 	public function findByEmail(string $email): ?ShieldEntity
 	{
@@ -47,7 +47,7 @@ class ShieldFactory extends UserModel implements UserFactory
 	 *
 	 * @param string $username
 	 *
-	 * @return UserEntity|null
+	 * @return ShieldEntity|null
 	 */
 	public function findByUsername(string $username): ?ShieldEntity
 	{

@@ -50,6 +50,6 @@ class UserProvider
 	 */
 	public static function addFactory(string $check, string $factory): void
 	{
-		array_unshift(static::$factories, $factory);
+		static::$factories = array_merge([$check => $factory], static::$factories);
 	}
 }
