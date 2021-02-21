@@ -25,7 +25,7 @@ class ShieldFactory extends UserModel implements UserFactory
 	 *
 	 * @return ShieldEntity|null
 	 */
-	public function findById($id): ?ShieldEntity
+	public function findById($id): ?UserEntity
 	{
 		return $this->find($id);
 	}
@@ -37,7 +37,7 @@ class ShieldFactory extends UserModel implements UserFactory
 	 *
 	 * @return ShieldEntity|null
 	 */
-	public function findByEmail(string $email): ?ShieldEntity
+	public function findByEmail(string $email): ?UserEntity
 	{
 		return $this->where('email', $email)->first();
 	}
@@ -49,7 +49,7 @@ class ShieldFactory extends UserModel implements UserFactory
 	 *
 	 * @return ShieldEntity|null
 	 */
-	public function findByUsername(string $username): ?ShieldEntity
+	public function findByUsername(string $username): ?UserEntity
 	{
 		return $this->where('username', $username)->first();
 	}
