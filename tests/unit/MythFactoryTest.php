@@ -1,30 +1,21 @@
 <?php
 
-use CodeIgniter\Test\CIDatabaseTestCase;
 use Myth\Auth\Test\Fakers\UserFaker;
 use Tatter\Users\Factories\MythFactory;
 use Tatter\Users\UserEntity;
+use Tests\Support\FactoryTestCase;
 
-class MythFactoryTest extends CIDatabaseTestCase
+class MythFactoryTest extends FactoryTestCase
 {
-	/**
-	 * The namespace(s) to help us find the migration classes.
-	 * Empty is equivalent to running `spark migrate -all`.
-	 * Note that running "all" runs migrations in date order,
-	 * but specifying namespaces runs them in namespace order (then date)
-	 *
-	 * @var string|array|null
-	 */
 	protected $namespace = 'Myth\Auth';
+	protected $class     = MythFactory::class;
+	protected $faker     = UserFaker::class;
 
-	public function testFactoryMethods()
+	public function testId()
 	{
-		$user = fake(UserFaker::class);
-
-		$factory = new MythFactory();
-		$result  = $factory->findById($user->id);
+		$result = $this->factory->findById($this->user->id);
 
 		$this->assertInstanceof(UserEntity::class, $result);
-		$this->assertEquals($user->username, $result->getUsername());
+		$this->assertEquals($this->user->username, $result->getUsername());
 	}
 }
