@@ -1,9 +1,9 @@
 # Tatter\Users
 User interfaces and provider for CodeIgniter 4
 
-[![](https://github.com/tattersoftware/users/workflows/PHPUnit/badge.svg)](https://github.com/tattersoftware/users/actions?query=workflow%3A%22PHPUnit)
-[![](https://github.com/tattersoftware/users/workflows/PHPStan/badge.svg)](https://github.com/tattersoftware/users/actions?query=workflow%3A%22PHPStan)
-[![Coverage Status](https://coveralls.io/repos/github/tattersoftware/users/badge.svg?branch=develop)](https://coveralls.io/github/tattersoftware/users?branch=develop)
+[![](https://github.com/tattersoftware/codeigniter4-users/workflows/PHPUnit/badge.svg)](https://github.com/tattersoftware/codeigniter4-users/actions?query=workflow%3A%22PHPUnit)
+[![](https://github.com/tattersoftware/codeigniter4-users/workflows/PHPStan/badge.svg)](https://github.com/tattersoftware/codeigniter4-users/actions?query=workflow%3A%22PHPStan)
+[![Coverage Status](https://coveralls.io/repos/github/tattersoftware/codeigniter4-users/badge.svg?branch=develop)](https://coveralls.io/github/tattersoftware/codeigniter4-users?branch=develop)
 
 ## Description
 
