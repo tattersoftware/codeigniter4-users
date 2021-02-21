@@ -22,9 +22,9 @@ class MythFactory extends UserModel implements UserFactory
 	 *
 	 * @param string|int $id
 	 *
-	 * @return UserEntity|null
+	 * @return MythEntity|null
 	 */
-	public function findById($id): ?MythEntity
+	public function findById($id): ?UserEntity
 	{
 		return $this->find($id);
 	}
@@ -34,9 +34,9 @@ class MythFactory extends UserModel implements UserFactory
 	 *
 	 * @param string $email
 	 *
-	 * @return UserEntity|null
+	 * @return MythEntity|null
 	 */
-	public function findByEmail(string $email): ?MythEntity
+	public function findByEmail(string $email): ?UserEntity
 	{
 		return $this->where('email', $email)->first();
 	}
@@ -46,9 +46,9 @@ class MythFactory extends UserModel implements UserFactory
 	 *
 	 * @param string $username
 	 *
-	 * @return UserEntity|null
+	 * @return MythEntity|null
 	 */
-	public function findByUsername(string $username): ?MythEntity
+	public function findByUsername(string $username): ?UserEntity
 	{
 		return $this->where('username', $username)->first();
 	}

@@ -35,6 +35,11 @@
 			"**/Database/Migrations/**"
 		]
 	},
+	"autoload-dev": {
+		"psr-4": {
+			"Tests\\Support\\": "tests/_support"
+		}
+	},
 	"repositories": [
 		{
 			"type": "vcs",
@@ -53,6 +58,8 @@
 	"prefer-stable": true,
 	"scripts": {
 		"analyze": "phpstan analyze",
-		"style": "phpcbf --standard=./vendor/codeigniter4/codeigniter4-standard/CodeIgniter4 tests/ src/"
+		"mutate": "infection --threads=2 --skip-initial-tests --coverage=build/phpunit",
+		"style": "phpcbf --standard=./vendor/codeigniter4/codeigniter4-standard/CodeIgniter4 tests/ src/",
+		"test": "phpunit"
 	}
 }
