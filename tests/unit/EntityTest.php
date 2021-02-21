@@ -7,7 +7,7 @@ class EntityTest extends ProjectTestCase
 	/**
 	 * Mock Entity data
 	 *
-	 * @var array<string,string>
+	 * @var array<string,string|int>
 	 */
 	private $data = [
 		'id'       => 1,
