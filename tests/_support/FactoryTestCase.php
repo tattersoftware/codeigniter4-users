@@ -1,8 +1,9 @@
 <?php namespace Tests\Support;
 
+use Tatter\Users\UserEntity;
 use Tatter\Users\UserFactory;
 
-class FactoryTestCase extends DatabaseTestCase
+abstract class FactoryTestCase extends DatabaseTestCase
 {
 	/**
 	 * The factory class to test.
@@ -41,5 +42,35 @@ class FactoryTestCase extends DatabaseTestCase
 
 		$this->user    = fake($this->faker);
 		$this->factory = new $this->class();
+	}
+
+	public function testId()
+	{
+		$result = $this->factory->findById($this->user->id);
+
+		$this->assertInstanceof(UserEntity::class, $result);
+		$this->assertEquals($this->user->id, $result->getId());
+	}
+
+	public function testEmail()
+	{
+		// Shield's faker does not include email yet
+		if ($this->faker === 'Sparks\Shield\Models\UserModel')
+		{
+			$this->markTestSkipped();
+		}
+
+		$result = $this->factory->findByEmail($this->user->email);
+
+		$this->assertInstanceof(UserEntity::class, $result);
+		$this->assertEquals($this->user->id, $result->getId());
+	}
+
+	public function testUsername()
+	{
+		$result = $this->factory->findByUsername($this->user->username);
+
+		$this->assertInstanceof(UserEntity::class, $result);
+		$this->assertEquals($this->user->id, $result->getId());
 	}
 }
