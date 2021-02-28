@@ -61,7 +61,7 @@ class ShieldEntity extends User implements UserEntity
 	 */
 	public function getName(): ?string
 	{
-		throw new RuntimeException('That attribute is not supported.');
+		return null;
 	}
 
 	/**
