@@ -1,13 +1,12 @@
 <?php namespace Tatter\Users\Entities;
 
-use Myth\Auth\Entities\User;
-use Tatter\Users\Interfaces\HasGroup;
-use Tatter\Users\Interfaces\HasPermission;
+use Fluent\Auth\Entities\User;
+use Tatter\Users\UserEntity;
 
 /**
- * Myth User Entity
+ * Fluent User Entity
  */
-class MythEntity extends User implements HasGroup, HasPermission
+class FluentEntity extends User implements UserEntity
 {
 	/**
 	 * Returns the name of the column used to
@@ -17,7 +16,7 @@ class MythEntity extends User implements HasGroup, HasPermission
 	 */
 	public function getIdentifier(): string
 	{
-		return 'id';
+		return $this->getAuthIdColumn();
 	}
 
 	/**
@@ -28,7 +27,7 @@ class MythEntity extends User implements HasGroup, HasPermission
 	 */
 	public function getId()
 	{
-		return $this->attributes['id'] ?? null;
+		return $this->getAuthId();
 	}
 
 	/**
@@ -38,7 +37,7 @@ class MythEntity extends User implements HasGroup, HasPermission
 	 */
 	public function getEmail(): ?string
 	{
-		return $this->attributes['email'] ?? null;
+		return $this->getAuthEmail();
 	}
 
 	/**
@@ -72,32 +71,6 @@ class MythEntity extends User implements HasGroup, HasPermission
 	 */
 	public function isActive(): bool
 	{
-		return $this->isActivated();
-	}
-
-	/**
-	 * Returns whether this user is a
-	 * member of the given group.
-	 *
-	 * @param string $group The group name
-	 *
-	 * @return bool
-	 */
-	public function hasGroup(string $group): bool
-	{
-		return in_array(strtolower($group), $this->getRoles());
-	}
-
-	/**
-	 * Returns whether this user has
-	 * a certain permission.
-	 *
-	 * @param string $permission The permission name
-	 *
-	 * @return bool
-	 */
-	public function hasPermission(string $permission): bool
-	{
-		return $this->can($permission);
+		return empty($this->attributes['deleted_at']);
 	}
 }

@@ -27,12 +27,8 @@ class EntityTest extends ProjectTestCase
 		$this->assertEquals($this->data['id'], $entity->getId());
 		$this->assertEquals($this->data['email'], $entity->getEmail());
 		$this->assertEquals($this->data['username'], $entity->getUsername());
-		$this->assertEquals(true, $entity->isActive());
-
-		$this->expectException('RuntimeException');
-		$this->expectExceptionMessage('That attribute is not supported.');
-
-		$entity->getName();
+		$this->assertTrue($entity->isActive());
+		$this->assertNull($entity->getName());
 	}
 
 	public function entityProvider(): array
@@ -40,6 +36,7 @@ class EntityTest extends ProjectTestCase
 		return [
 			['Tatter\Users\Entities\MythEntity'],
 			['Tatter\Users\Entities\ShieldEntity'],
+			['Tatter\Users\Entities\FluentEntity'],
 		];
 	}
 }

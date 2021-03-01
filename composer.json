@@ -22,6 +22,7 @@
 		"php": "^7.3 || ^8.0"
 	},
 	"require-dev": {
+		"agungsugiarto/codeigniter4-authentication": "dev-master",
 		"codeigniter4/codeigniter4": "dev-develop",
 		"lonnieezell/codigniter-shield": "dev-develop",
 		"myth/auth": "dev-develop",
@@ -41,6 +42,10 @@
 		}
 	},
 	"repositories": [
+		{
+			"type": "vcs",
+			"url": "https://github.com/agungsugiarto/codeigniter4-authentication"
+		},
 		{
 			"type": "vcs",
 			"url": "https://github.com/codeigniter4/CodeIgniter4"

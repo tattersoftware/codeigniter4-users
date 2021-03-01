@@ -10,6 +10,7 @@ class ProviderTest extends ProjectTestCase
 		$expected = [
 			'Myth\Auth\Models\UserModel'     => 'Tatter\Users\Factories\MythFactory',
 			'Sparks\Shield\Models\UserModel' => 'Tatter\Users\Factories\ShieldFactory',
+			'Fluent\Auth\Models\UserModel'   => 'Tatter\Users\Factories\FluentFactory',
 		];
 
 		$this->assertSame($expected, UserProvider::getFactories());
@@ -30,6 +31,7 @@ class ProviderTest extends ProjectTestCase
 			'foo'                            => 'bar',
 			'Myth\Auth\Models\UserModel'     => 'Tatter\Users\Factories\MythFactory',
 			'Sparks\Shield\Models\UserModel' => 'Tatter\Users\Factories\ShieldFactory',
+			'Fluent\Auth\Models\UserModel'   => 'Tatter\Users\Factories\FluentFactory',
 		];
 
 		UserProvider::addFactory('foo', 'bar');

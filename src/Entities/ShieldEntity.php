@@ -2,7 +2,6 @@
 
 use Sparks\Shield\Entities\User;
 use Tatter\Users\UserEntity;
-use RuntimeException;
 
 /**
  * Shield User Entity
@@ -61,7 +60,7 @@ class ShieldEntity extends User implements UserEntity
 	 */
 	public function getName(): ?string
 	{
-		throw new RuntimeException('That attribute is not supported.');
+		return null;
 	}
 
 	/**

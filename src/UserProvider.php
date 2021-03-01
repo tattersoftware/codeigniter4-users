@@ -10,13 +10,14 @@ class UserProvider
 {
 	/**
 	 * Known factories. Keys are the
-	 * class to check for to validate.
+	 * class to check availability.
 	 *
 	 * @var array<string,string>
 	 */
 	protected static $factories = [
 		'Myth\Auth\Models\UserModel'     => Factories\MythFactory::class,
 		'Sparks\Shield\Models\UserModel' => Factories\ShieldFactory::class,
+		'Fluent\Auth\Models\UserModel'   => Factories\FluentFactory::class,
 	];
 
 	/**
