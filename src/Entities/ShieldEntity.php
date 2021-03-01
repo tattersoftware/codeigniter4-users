@@ -2,7 +2,6 @@
 
 use Sparks\Shield\Entities\User;
 use Tatter\Users\UserEntity;
-use RuntimeException;
 
 /**
  * Shield User Entity

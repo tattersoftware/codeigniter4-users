@@ -1,13 +1,13 @@
 <?php namespace Tatter\Users\Entities;
 
 use Myth\Auth\Entities\User;
-use Tatter\Users\UserEntity;
-use RuntimeException;
+use Tatter\Users\Interfaces\HasGroup;
+use Tatter\Users\Interfaces\HasPermission;
 
 /**
  * Myth User Entity
  */
-class MythEntity extends User implements UserEntity
+class MythEntity extends User implements HasGroup, HasPermission
 {
 	/**
 	 * Returns the name of the column used to
@@ -73,5 +73,31 @@ class MythEntity extends User implements UserEntity
 	public function isActive(): bool
 	{
 		return $this->isActivated();
+	}
+
+	/**
+	 * Returns whether this user is a
+	 * member of the given group.
+	 *
+	 * @param string $group The group name
+	 *
+	 * @return bool
+	 */
+	public function hasGroup(string $group): bool
+	{
+		return in_array(strtolower($group), $this->getRoles());
+	}
+
+	/**
+	 * Returns whether this user has
+	 * a certain permission.
+	 *
+	 * @param string $permission The permission name
+	 *
+	 * @return bool
+	 */
+	public function hasPermission(string $permission): bool
+	{
+		return $this->can($permission);
 	}
 }
