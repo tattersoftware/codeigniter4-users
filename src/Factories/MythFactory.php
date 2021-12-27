@@ -4,6 +4,7 @@ use Myth\Auth\Models\UserModel;
 use Tatter\Users\Entities\MythEntity;
 use Tatter\Users\UserEntity;
 use Tatter\Users\UserFactory;
+use InvalidArgumentException;
 
 /**
  * Myth User Factory
@@ -26,6 +27,11 @@ class MythFactory extends UserModel implements UserFactory
 	 */
 	public function findById($id): ?UserEntity
 	{
+		if (! is_string($id) || is_int($id))
+		{
+			throw new InvalidArgumentException('Invalid type for argument');
+		}
+
 		return $this->find($id);
 	}
 
