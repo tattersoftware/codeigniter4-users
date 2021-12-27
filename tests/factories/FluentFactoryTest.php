@@ -2,7 +2,7 @@
 
 use Fluent\Auth\Models\UserModel;
 use Tatter\Users\Factories\FluentFactory;
-use Tests\Support\FactoryTestCase;
+use Tatter\Users\Test\FactoryTestCase;
 
 /**
  * @internal

@@ -2,6 +2,7 @@
 
 namespace Tatter\Users\Factories;
 
+use Sparks\Shield\Models\UserIdentityModel;
 use Sparks\Shield\Models\UserModel;
 use Tatter\Users\Entities\ShieldEntity;
 use Tatter\Users\UserEntity;
@@ -38,7 +39,16 @@ class ShieldFactory extends UserModel implements UserFactory
      */
     public function findByEmail(string $email): ?UserEntity
     {
-        return $this->where('email', $email)->first();
+        $identity = model(UserIdentityModel::class)->where([
+            'type'   => 'email_password',
+            'secret' => $email,
+        ])->first();
+
+        if ($identity === null) {
+            return null;
+        }
+
+        return $this->findById($identity->user_id);
     }
 
     /**

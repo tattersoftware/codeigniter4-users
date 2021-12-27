@@ -1,12 +1,12 @@
 <?php
 
 use Tatter\Users\UserProvider;
-use Tests\Support\ProjectTestCase;
+use Tests\Support\TestCase;
 
 /**
  * @internal
  */
-final class ProviderTest extends ProjectTestCase
+final class ProviderTest extends TestCase
 {
     public function testGetFactories()
     {

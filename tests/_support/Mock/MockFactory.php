@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Support;
+namespace Tests\Support\Mock;
 
 use Tatter\Users\UserEntity;
 use Tatter\Users\UserFactory;

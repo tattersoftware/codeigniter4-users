@@ -3,13 +3,13 @@
 use CodeIgniter\Config\Factories;
 use Config\Services;
 use Tatter\Users\UserProvider;
-use Tests\Support\MockFactory;
-use Tests\Support\ProjectTestCase;
+use Tests\Support\Mock\MockFactory;
+use Tests\Support\TestCase;
 
 /**
  * @internal
  */
-final class ServiceTest extends ProjectTestCase
+final class ServiceTest extends TestCase
 {
     public function testUsesFactoriesModel()
     {
