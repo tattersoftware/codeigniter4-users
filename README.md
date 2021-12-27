@@ -1,8 +1,9 @@
 # Tatter\Users
 User interfaces and provider for CodeIgniter 4
 
-[![](https://github.com/tattersoftware/codeigniter4-users/workflows/PHPUnit/badge.svg)](https://github.com/tattersoftware/codeigniter4-users/actions?query=workflow%3A%22PHPUnit)
-[![](https://github.com/tattersoftware/codeigniter4-users/workflows/PHPStan/badge.svg)](https://github.com/tattersoftware/codeigniter4-users/actions?query=workflow%3A%22PHPStan)
+[![](https://github.com/tattersoftware/codeigniter4-users/workflows/PHPUnit/badge.svg)](https://github.com/tattersoftware/codeigniter4-users/actions/workflows/test.yml)
+[![](https://github.com/tattersoftware/codeigniter4-users/workflows/PHPStan/badge.svg)](https://github.com/tattersoftware/codeigniter4-users/actions/workflows/analyze.yml)
+[![](https://github.com/tattersoftware/codeigniter4-users/workflows/Deptrac/badge.svg)](https://github.com/tattersoftware/codeigniter4-users/actions/workflows/inspect.yml)
 [![Coverage Status](https://coveralls.io/repos/github/tattersoftware/codeigniter4-users/badge.svg?branch=develop)](https://coveralls.io/github/tattersoftware/codeigniter4-users?branch=develop)
 
 ## Quick Start
@@ -11,7 +12,7 @@ User interfaces and provider for CodeIgniter 4
 2. Check the list of supported factories or provide your own
 3. Access users and their methods through the provided service:
 ```
-$users = service('users')->findByEmail('bill@example.com'); // instance of Tatter\Users\UserFactory
+$users = service('users'); // instance of Tatter\Users\UserFactory
 $user  = $users->findByEmail('bill@example.com'); // instance of Tatter\Users\UserEntity
 echo $user->getUsername(); // "billy_jean"
 ```
@@ -83,6 +84,13 @@ The User Entity interface defines the following methods:
 There are extended interfaces in the `Tatter\Users\Interfaces` namespace that provide
 additional methods which may be required by some libraries. Check your library's requirements
 to make sure you are using all the required interfaces.
+
+## Testing
+
+There are convenience test cases in `Tatter\Users\Test` to enable other libraries to add
+and test their own classes. If you are looking to test your user interfaces without committing
+to a specific provider then consider adding [Tatter\Imposter](https://github.com/tattersoftware/codeigniter4-imposter) -
+a mock authentication library that is fully compliant with `Tatter\Users`.
 
 ## Development
 
