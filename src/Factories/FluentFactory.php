@@ -19,44 +19,44 @@ class FluentFactory extends UserModel implements UserFactory
      */
     protected $returnType = FluentEntity::class;
 
-	/**
-	 * Locates a user by its primary identifier.
-	 *
-	 * @param int|string $id
-	 *
-	 * @return FluentEntity|null
-	 */
-	public function findById($id): ?UserEntity
-	{
-		/** @var FluentEntity|null $result */
-		$result = parent::findById($id);
+    /**
+     * Locates a user by its primary identifier.
+     *
+     * @param int|string $id
+     *
+     * @return FluentEntity|null
+     */
+    public function findById($id): ?UserEntity
+    {
+        /** @var FluentEntity|null $result */
+        $result = parent::findById($id);
 
-		return $result;
-	}
+        return $result;
+    }
 
-	/**
-	 * Locates a user by its email.
-	 *
-	 * @return FluentEntity|null
-	 */
-	public function findByEmail(string $email): ?UserEntity
-	{
-		/** @var FluentEntity|null $result */
-		$result = $this->findByCredentials(['email' => $email]);
+    /**
+     * Locates a user by its email.
+     *
+     * @return FluentEntity|null
+     */
+    public function findByEmail(string $email): ?UserEntity
+    {
+        /** @var FluentEntity|null $result */
+        $result = $this->findByCredentials(['email' => $email]);
 
-		return $result;
-	}
+        return $result;
+    }
 
-	/**
-	 * Locates a user by its username.
-	 *
-	 * @return FluentEntity|null
-	 */
-	public function findByUsername(string $username): ?UserEntity
-	{
-		/** @var FluentEntity|null $result */
-		$result = $this->findByCredentials(['username' => $username]);
+    /**
+     * Locates a user by its username.
+     *
+     * @return FluentEntity|null
+     */
+    public function findByUsername(string $username): ?UserEntity
+    {
+        /** @var FluentEntity|null $result */
+        $result = $this->findByCredentials(['username' => $username]);
 
-		return $result;
-	}
+        return $result;
+    }
 }

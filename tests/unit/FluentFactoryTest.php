@@ -9,7 +9,7 @@ use Tests\Support\FactoryTestCase;
  */
 final class FluentFactoryTest extends FactoryTestCase
 {
-	protected $namespace = 'Fluent\Auth';
-	protected $class     = FluentFactory::class;
-	protected $faker     = UserModel::class;
+    protected $namespace = 'Fluent\Auth';
+    protected $class     = FluentFactory::class;
+    protected $faker     = UserModel::class;
 }

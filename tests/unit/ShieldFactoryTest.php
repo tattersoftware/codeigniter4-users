@@ -9,7 +9,7 @@ use Tests\Support\FactoryTestCase;
  */
 final class ShieldFactoryTest extends FactoryTestCase
 {
-	protected $namespace = 'Sparks\Shield';
-	protected $class     = ShieldFactory::class;
-	protected $faker     = UserModel::class;
+    protected $namespace = 'Sparks\Shield';
+    protected $class     = ShieldFactory::class;
+    protected $faker     = UserModel::class;
 }

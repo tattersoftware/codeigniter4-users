@@ -9,5 +9,5 @@ use CodeIgniter\Test\CIUnitTestCase;
  */
 abstract class ProjectTestCase extends CIUnitTestCase
 {
-	use TestCaseTrait;
+    use TestCaseTrait;
 }

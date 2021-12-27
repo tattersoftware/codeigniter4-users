@@ -9,7 +9,7 @@ use Tests\Support\FactoryTestCase;
  */
 final class MythFactoryTest extends FactoryTestCase
 {
-	protected $namespace = 'Myth\Auth';
-	protected $class     = MythFactory::class;
-	protected $faker     = UserFaker::class;
+    protected $namespace = 'Myth\Auth';
+    protected $class     = MythFactory::class;
+    protected $faker     = UserFaker::class;
 }

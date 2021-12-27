@@ -19,35 +19,35 @@ class ShieldFactory extends UserModel implements UserFactory
      */
     protected $returnType = ShieldEntity::class;
 
-	/**
-	 * Locates a user by its primary identifier.
-	 *
-	 * @param int|string $id
-	 *
-	 * @return ShieldEntity|null
-	 */
-	public function findById($id): ?UserEntity
-	{
-		return $this->find($id);
-	}
+    /**
+     * Locates a user by its primary identifier.
+     *
+     * @param int|string $id
+     *
+     * @return ShieldEntity|null
+     */
+    public function findById($id): ?UserEntity
+    {
+        return $this->find($id);
+    }
 
-	/**
-	 * Locates a user by its email.
-	 *
-	 * @return ShieldEntity|null
-	 */
-	public function findByEmail(string $email): ?UserEntity
-	{
-		return $this->where('email', $email)->first();
-	}
+    /**
+     * Locates a user by its email.
+     *
+     * @return ShieldEntity|null
+     */
+    public function findByEmail(string $email): ?UserEntity
+    {
+        return $this->where('email', $email)->first();
+    }
 
-	/**
-	 * Locates a user by its username.
-	 *
-	 * @return ShieldEntity|null
-	 */
-	public function findByUsername(string $username): ?UserEntity
-	{
-		return $this->where('username', $username)->first();
-	}
+    /**
+     * Locates a user by its username.
+     *
+     * @return ShieldEntity|null
+     */
+    public function findByUsername(string $username): ?UserEntity
+    {
+        return $this->where('username', $username)->first();
+    }
 }

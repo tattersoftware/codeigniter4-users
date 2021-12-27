@@ -9,15 +9,15 @@ use CodeIgniter\Test\DatabaseTestTrait;
  */
 abstract class DatabaseTestCase extends ProjectTestCase
 {
-	use DatabaseTestTrait;
+    use DatabaseTestTrait;
 
-	/**
-	 * The namespace(s) to help us find the migration classes.
-	 * Empty is equivalent to running `spark migrate -all`.
-	 * Note that running "all" runs migrations in date order,
-	 * but specifying namespaces runs them in namespace order (then date)
-	 *
-	 * @var array|string|null
-	 */
-	protected $namespace;
+    /**
+     * The namespace(s) to help us find the migration classes.
+     * Empty is equivalent to running `spark migrate -all`.
+     * Note that running "all" runs migrations in date order,
+     * but specifying namespaces runs them in namespace order (then date)
+     *
+     * @var array|string|null
+     */
+    protected $namespace;
 }
