@@ -13,10 +13,6 @@ interface HasGroup extends UserEntity
 	/**
 	 * Returns whether this user is a
 	 * member of the given group.
-	 *
-	 * @param string $group The group name
-	 *
-	 * @return bool
 	 */
 	public function hasGroup(string $group): bool;
 }
