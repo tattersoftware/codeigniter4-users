@@ -1,4 +1,6 @@
-<?php namespace Tatter\Users\Interfaces;
+<?php
+
+namespace Tatter\Users\Interfaces;
 
 use Tatter\Users\UserEntity;
 
@@ -10,9 +12,9 @@ use Tatter\Users\UserEntity;
  */
 interface HasGroup extends UserEntity
 {
-	/**
-	 * Returns whether this user is a
-	 * member of the given group.
-	 */
-	public function hasGroup(string $group): bool;
+    /**
+     * Returns whether this user is a
+     * member of the given group.
+     */
+    public function hasGroup(string $group): bool;
 }

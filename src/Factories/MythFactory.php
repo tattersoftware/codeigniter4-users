@@ -1,61 +1,58 @@
-<?php namespace Tatter\Users\Factories;
+<?php
 
+namespace Tatter\Users\Factories;
+
+use InvalidArgumentException;
 use Myth\Auth\Models\UserModel;
 use Tatter\Users\Entities\MythEntity;
 use Tatter\Users\UserEntity;
 use Tatter\Users\UserFactory;
-use InvalidArgumentException;
 
 /**
  * Myth User Factory
  */
 class MythFactory extends UserModel implements UserFactory
 {
-	/**
-	 * The format that the results should be returned as.
-	 *
-	 * @var string
-	 */
+    /**
+     * The format that the results should be returned as.
+     *
+     * @var string
+     */
     protected $returnType = MythEntity::class;
 
-	/**
-	 * Locates a user by its primary identifier.
-	 *
-	 * @param string|int $id
-	 *
-	 * @return MythEntity|null
-	 */
-	public function findById($id): ?UserEntity
-	{
-		if (! is_string($id) || is_int($id)) // @phpstan-ignore-line
-		{
-			throw new InvalidArgumentException('Invalid type for argument');
-		}
+    /**
+     * Locates a user by its primary identifier.
+     *
+     * @param int|string $id
+     *
+     * @return MythEntity|null
+     */
+    public function findById($id): ?UserEntity
+    {
+        if (! is_string($id) || is_int($id)) { // @phpstan-ignore-line
+            throw new InvalidArgumentException('Invalid type for argument');
+        }
 
-		return $this->find($id);
-	}
+        return $this->find($id);
+    }
 
-	/**
-	 * Locates a user by its email.
-	 *
-	 * @param string $email
-	 *
-	 * @return MythEntity|null
-	 */
-	public function findByEmail(string $email): ?UserEntity
-	{
-		return $this->where('email', $email)->first();
-	}
+    /**
+     * Locates a user by its email.
+     *
+     * @return MythEntity|null
+     */
+    public function findByEmail(string $email): ?UserEntity
+    {
+        return $this->where('email', $email)->first();
+    }
 
-	/**
-	 * Locates a user by its username.
-	 *
-	 * @param string $username
-	 *
-	 * @return MythEntity|null
-	 */
-	public function findByUsername(string $username): ?UserEntity
-	{
-		return $this->where('username', $username)->first();
-	}
+    /**
+     * Locates a user by its username.
+     *
+     * @return MythEntity|null
+     */
+    public function findByUsername(string $username): ?UserEntity
+    {
+        return $this->where('username', $username)->first();
+    }
 }
