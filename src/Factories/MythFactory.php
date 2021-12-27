@@ -27,7 +27,7 @@ class MythFactory extends UserModel implements UserFactory
 	 */
 	public function findById($id): ?UserEntity
 	{
-		if (! is_string($id) || is_int($id))
+		if (! is_string($id) || is_int($id)) // @phpstan-ignore-line
 		{
 			throw new InvalidArgumentException('Invalid type for argument');
 		}
