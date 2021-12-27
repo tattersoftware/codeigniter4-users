@@ -2,7 +2,7 @@
 
 use Myth\Auth\Test\Fakers\UserFaker;
 use Tatter\Users\Factories\MythFactory;
-use Tests\Support\FactoryTestCase;
+use Tatter\Users\Test\FactoryTestCase;
 
 /**
  * @internal

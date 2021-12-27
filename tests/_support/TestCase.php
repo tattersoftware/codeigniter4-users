@@ -2,9 +2,13 @@
 
 namespace Tests\Support;
 
+use CodeIgniter\Test\CIUnitTestCase;
 use Tatter\Users\UserProvider;
 
-trait TestCaseTrait
+/**
+ * @internal
+ */
+abstract class TestCase extends CIUnitTestCase
 {
     /**
      * @var array<string,string>|null

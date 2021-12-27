@@ -1,11 +1,11 @@
 <?php
 
-use Tests\Support\ProjectTestCase;
+use Tests\Support\TestCase;
 
 /**
  * @internal
  */
-final class EntityTest extends ProjectTestCase
+final class EntityTest extends TestCase
 {
     /**
      * Mock Entity data

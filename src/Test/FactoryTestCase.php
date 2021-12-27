@@ -1,12 +1,26 @@
 <?php
 
-namespace Tests\Support;
+namespace Tatter\Users\Test;
 
+use CodeIgniter\Test\CIUnitTestCase;
+use CodeIgniter\Test\DatabaseTestTrait;
 use Tatter\Users\UserEntity;
 use Tatter\Users\UserFactory;
 
-abstract class FactoryTestCase extends DatabaseTestCase
+abstract class FactoryTestCase extends CIUnitTestCase
 {
+    use DatabaseTestTrait;
+
+    /**
+     * The namespace(s) to help us find the migration classes.
+     * Empty is equivalent to running `spark migrate -all`.
+     * Note that running "all" runs migrations in date order,
+     * but specifying namespaces runs them in namespace order (then date)
+     *
+     * @var array|string|null
+     */
+    protected $namespace;
+
     /**
      * The factory class to test.
      *
@@ -36,7 +50,7 @@ abstract class FactoryTestCase extends DatabaseTestCase
     protected $factory;
 
     /**
-     * Sets up test instances
+     * Sets up the test instances.
      */
     protected function setUp(): void
     {
