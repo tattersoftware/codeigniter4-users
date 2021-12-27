@@ -3,12 +3,13 @@
 namespace Tatter\Users\Entities;
 
 use Sparks\Shield\Entities\User;
-use Tatter\Users\UserEntity;
+use Tatter\Users\Interfaces\HasGroup;
+use Tatter\Users\Interfaces\HasPermission;
 
 /**
  * Shield User Entity
  */
-class ShieldEntity extends User implements UserEntity
+class ShieldEntity extends User implements HasGroup, HasPermission
 {
     /**
      * Returns the name of the column used to
@@ -64,5 +65,48 @@ class ShieldEntity extends User implements UserEntity
     public function isActive(): bool
     {
         return $this->attributes['active'] ?? false;
+    }
+
+    /**
+     * Returns whether this user is a
+     * member of the given group.
+     *
+     * @param string $group The group name
+     */
+    public function hasGroup(string $group): bool
+    {
+        return $this->inGroup($group);
+    }
+
+    /**
+     * Returns whether this user has
+     * a certain permission.
+     *
+     * WARNING: this supercedes the native
+     * "hasPermission()" (which only checks
+     * for direct permission) to check for
+     * group permissions as well.
+     *
+     * @see self::hasDirectPermission()
+     *
+     * @param string $permission The permission name
+     */
+    public function hasPermission(string $permission): bool
+    {
+        return $this->can($permission);
+    }
+
+    /**
+     * Checks to see if the user has the permission set
+     * directly on themselves. This disregards any groups
+     * they are part of.
+     *
+     * @see self::hasPermission()
+     *
+     * @param string $permission The permission name
+     */
+    public function hasDirectPermission(string $permission): bool
+    {
+        return parent::hasPermission($permission);
     }
 }

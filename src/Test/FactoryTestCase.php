@@ -29,6 +29,13 @@ abstract class FactoryTestCase extends CIUnitTestCase
     protected $class;
 
     /**
+     * The factory instance.
+     *
+     * @var UserFactory
+     */
+    protected $factory;
+
+    /**
      * The model class to use for creating a faked database entity.
      *
      * @var string
@@ -41,13 +48,6 @@ abstract class FactoryTestCase extends CIUnitTestCase
      * @var object
      */
     protected $user;
-
-    /**
-     * The factory instance.
-     *
-     * @var UserFactory
-     */
-    protected $factory;
 
     /**
      * Sets up the test instances.
@@ -68,17 +68,26 @@ abstract class FactoryTestCase extends CIUnitTestCase
         $this->assertSame($this->user->id, $result->getId());
     }
 
+    public function testIdMissing()
+    {
+        $result = $this->factory->findById(1234);
+
+        $this->assertNull($result);
+    }
+
     public function testEmail()
     {
-        // Shield's faker does not include email yet
-        if ($this->faker === 'Sparks\Shield\Models\UserModel') {
-            $this->markTestSkipped();
-        }
-
         $result = $this->factory->findByEmail($this->user->email);
 
         $this->assertInstanceof(UserEntity::class, $result);
         $this->assertSame($this->user->id, $result->getId());
+    }
+
+    public function testEmailMissing()
+    {
+        $result = $this->factory->findByEmail('banana@barbados.net');
+
+        $this->assertNull($result);
     }
 
     public function testUsername()
@@ -87,5 +96,12 @@ abstract class FactoryTestCase extends CIUnitTestCase
 
         $this->assertInstanceof(UserEntity::class, $result);
         $this->assertSame($this->user->id, $result->getId());
+    }
+
+    public function testUsernameMissing()
+    {
+        $result = $this->factory->findByUsername('elaborate.ploy');
+
+        $this->assertNull($result);
     }
 }

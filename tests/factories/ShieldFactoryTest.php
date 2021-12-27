@@ -13,9 +13,15 @@ final class ShieldFactoryTest extends FactoryTestCase
     protected $class     = ShieldFactory::class;
     protected $faker     = UserModel::class;
 
-    // Shield's faker does not include email yet so skip this test for now
+    // Shield uses identities not included with the faker so we have to create an email ourselves
     public function testEmail()
     {
-        $this->markTestSkipped();
+        $this->user->createEmailIdentity(
+            [
+                'email'    => 'jim@example.com',
+                'password' => 'secret', ],
+        );
+
+        parent::testEmail();
     }
 }

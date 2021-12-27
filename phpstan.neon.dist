@@ -10,6 +10,7 @@ parameters:
 		- src/Config/Routes.php
 		- src/Views/*
 	ignoreErrors:
+		- '#Access to an undefined property Tatter\\Users\\UserEntity::\$name#'
 		- '#Call to an undefined method CodeIgniter\\Database\\BaseBuilder::first\(\)#'
 		- '#Call to an undefined static method Config\\Services::[A-Za-z]+\(\)#'
 		- '#PHPDoc type string of property Tatter\\Users\\Factories\\[A-Za-z]+::\$returnType is not covariant.+#'
