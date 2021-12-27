@@ -1,10 +1,10 @@
 <?php namespace Tests\Support;
 
-use CodeIgniter\Test\CIDatabaseTestCase;
+use CodeIgniter\Test\DatabaseTestTrait;
 
-class DatabaseTestCase extends CIDatabaseTestCase
+class DatabaseTestCase extends ProjectTestCase
 {
-	use TestCaseTrait;
+	use DatabaseTestTrait;
 
 	/**
 	 * The namespace(s) to help us find the migration classes.

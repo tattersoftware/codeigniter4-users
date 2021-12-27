@@ -6,11 +6,13 @@ parameters:
 		- tests
 	bootstrapFiles:
 		- vendor/codeigniter4/codeigniter4/system/Test/bootstrap.php
-	excludes_analyse:
+	excludePaths:
 		- src/Config/Routes.php
 		- src/Views/*
 	ignoreErrors:
+		- '#Call to an undefined method CodeIgniter\\Database\\BaseBuilder::first\(\)#'
 		- '#Call to an undefined static method Config\\Services::[A-Za-z]+\(\)#'
+		- '#PHPDoc type string of property Tatter\\Users\\Factories\\[A-Za-z]+::\$returnType is not covariant.+#'
 	universalObjectCratesClasses:
 		- CodeIgniter\Entity
 		- Faker\Generator
