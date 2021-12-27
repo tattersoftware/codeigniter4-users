@@ -3,7 +3,10 @@
 use Tatter\Users\UserProvider;
 use Tests\Support\ProjectTestCase;
 
-class ProviderTest extends ProjectTestCase
+/**
+ * @internal
+ */
+final class ProviderTest extends ProjectTestCase
 {
 	public function testGetFactories()
 	{

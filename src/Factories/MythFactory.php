@@ -1,27 +1,29 @@
-<?php namespace Tatter\Users\Factories;
+<?php
 
+namespace Tatter\Users\Factories;
+
+use InvalidArgumentException;
 use Myth\Auth\Models\UserModel;
 use Tatter\Users\Entities\MythEntity;
 use Tatter\Users\UserEntity;
 use Tatter\Users\UserFactory;
-use InvalidArgumentException;
 
 /**
  * Myth User Factory
  */
 class MythFactory extends UserModel implements UserFactory
 {
-	/**
-	 * The format that the results should be returned as.
-	 *
-	 * @var string
-	 */
+    /**
+     * The format that the results should be returned as.
+     *
+     * @var string
+     */
     protected $returnType = MythEntity::class;
 
 	/**
 	 * Locates a user by its primary identifier.
 	 *
-	 * @param string|int $id
+	 * @param int|string $id
 	 *
 	 * @return MythEntity|null
 	 */
@@ -38,8 +40,6 @@ class MythFactory extends UserModel implements UserFactory
 	/**
 	 * Locates a user by its email.
 	 *
-	 * @param string $email
-	 *
 	 * @return MythEntity|null
 	 */
 	public function findByEmail(string $email): ?UserEntity
@@ -49,8 +49,6 @@ class MythFactory extends UserModel implements UserFactory
 
 	/**
 	 * Locates a user by its username.
-	 *
-	 * @param string $username
 	 *
 	 * @return MythEntity|null
 	 */

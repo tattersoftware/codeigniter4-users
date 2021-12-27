@@ -1,8 +1,13 @@
-<?php namespace Tests\Support;
+<?php
+
+namespace Tests\Support;
 
 use CodeIgniter\Test\DatabaseTestTrait;
 
-class DatabaseTestCase extends ProjectTestCase
+/**
+ * @internal
+ */
+abstract class DatabaseTestCase extends ProjectTestCase
 {
 	use DatabaseTestTrait;
 
@@ -12,7 +17,7 @@ class DatabaseTestCase extends ProjectTestCase
 	 * Note that running "all" runs migrations in date order,
 	 * but specifying namespaces runs them in namespace order (then date)
 	 *
-	 * @var string|array|null
+	 * @var array|string|null
 	 */
-	protected $namespace = null;
+	protected $namespace;
 }

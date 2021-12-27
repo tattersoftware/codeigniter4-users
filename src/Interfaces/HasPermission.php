@@ -1,4 +1,6 @@
-<?php namespace Tatter\Users\Interfaces;
+<?php
+
+namespace Tatter\Users\Interfaces;
 
 use Tatter\Users\UserEntity;
 

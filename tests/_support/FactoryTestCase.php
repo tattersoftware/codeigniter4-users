@@ -1,4 +1,6 @@
-<?php namespace Tests\Support;
+<?php
+
+namespace Tests\Support;
 
 use Tatter\Users\UserEntity;
 use Tatter\Users\UserFactory;
@@ -49,7 +51,7 @@ abstract class FactoryTestCase extends DatabaseTestCase
 		$result = $this->factory->findById($this->user->id);
 
 		$this->assertInstanceof(UserEntity::class, $result);
-		$this->assertEquals($this->user->id, $result->getId());
+		$this->assertSame($this->user->id, $result->getId());
 	}
 
 	public function testEmail()
@@ -63,7 +65,7 @@ abstract class FactoryTestCase extends DatabaseTestCase
 		$result = $this->factory->findByEmail($this->user->email);
 
 		$this->assertInstanceof(UserEntity::class, $result);
-		$this->assertEquals($this->user->id, $result->getId());
+		$this->assertSame($this->user->id, $result->getId());
 	}
 
 	public function testUsername()
@@ -71,6 +73,6 @@ abstract class FactoryTestCase extends DatabaseTestCase
 		$result = $this->factory->findByUsername($this->user->username);
 
 		$this->assertInstanceof(UserEntity::class, $result);
-		$this->assertEquals($this->user->id, $result->getId());
+		$this->assertSame($this->user->id, $result->getId());
 	}
 }

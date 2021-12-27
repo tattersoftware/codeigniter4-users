@@ -1,4 +1,6 @@
-<?php namespace Tatter\Users;
+<?php
+
+namespace Tatter\Users;
 
 /**
  * User Provider Class
@@ -34,8 +36,6 @@ class UserProvider
 	 * Sets the array of known factories.
 	 *
 	 * @param array<string,string> $factories
-	 *
-	 * @return void
 	 */
 	public static function setFactories(array $factories): void
 	{
@@ -44,10 +44,6 @@ class UserProvider
 
 	/**
 	 * Prepends a new factory, giving it priority.
-	 *
-	 * @param string $factory
-	 *
-	 * @return void
 	 */
 	public static function addFactory(string $check, string $factory): void
 	{

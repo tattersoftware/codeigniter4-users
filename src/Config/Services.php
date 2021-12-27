@@ -1,17 +1,17 @@
-<?php namespace Tatter\Users\Config;
+<?php
+
+namespace Tatter\Users\Config;
 
 use CodeIgniter\Config\Factories;
 use Config\Services as BaseServices;
+use RuntimeException;
 use Tatter\Users\UserFactory;
 use Tatter\Users\UserProvider;
-use RuntimeException;
 
 class Services extends BaseServices
 {
 	/**
 	 * Locates a valid User Factory.
-	 *
-	 * @return UserFactory
 	 *
 	 * @throws RuntimeException If no factory is available
 	 */
@@ -25,7 +25,7 @@ class Services extends BaseServices
 		// First check for a valid User Model
 		/** @var UserFactory|null $model */
 		$model = Factories::models('UserModel', ['instanceOf' => UserFactory::class]);
-		if (! is_null($model))
+		if (null !== $model)
 		{
 			return $model;
 		}

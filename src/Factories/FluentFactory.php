@@ -1,4 +1,6 @@
-<?php namespace Tatter\Users\Factories;
+<?php
+
+namespace Tatter\Users\Factories;
 
 use Fluent\Auth\Models\UserModel;
 use Tatter\Users\Entities\FluentEntity;
@@ -10,17 +12,17 @@ use Tatter\Users\UserFactory;
  */
 class FluentFactory extends UserModel implements UserFactory
 {
-	/**
-	 * The format that the results should be returned as.
-	 *
-	 * @var string
-	 */
+    /**
+     * The format that the results should be returned as.
+     *
+     * @var string
+     */
     protected $returnType = FluentEntity::class;
 
 	/**
 	 * Locates a user by its primary identifier.
 	 *
-	 * @param string|int $id
+	 * @param int|string $id
 	 *
 	 * @return FluentEntity|null
 	 */
@@ -28,13 +30,12 @@ class FluentFactory extends UserModel implements UserFactory
 	{
 		/** @var FluentEntity|null $result */
 		$result = parent::findById($id);
+
 		return $result;
 	}
 
 	/**
 	 * Locates a user by its email.
-	 *
-	 * @param string $email
 	 *
 	 * @return FluentEntity|null
 	 */
@@ -42,13 +43,12 @@ class FluentFactory extends UserModel implements UserFactory
 	{
 		/** @var FluentEntity|null $result */
 		$result = $this->findByCredentials(['email' => $email]);
+
 		return $result;
 	}
 
 	/**
 	 * Locates a user by its username.
-	 *
-	 * @param string $username
 	 *
 	 * @return FluentEntity|null
 	 */
@@ -56,6 +56,7 @@ class FluentFactory extends UserModel implements UserFactory
 	{
 		/** @var FluentEntity|null $result */
 		$result = $this->findByCredentials(['username' => $username]);
+
 		return $result;
 	}
 }

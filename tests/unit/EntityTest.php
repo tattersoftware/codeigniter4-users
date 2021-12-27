@@ -2,12 +2,15 @@
 
 use Tests\Support\ProjectTestCase;
 
-class EntityTest extends ProjectTestCase
+/**
+ * @internal
+ */
+final class EntityTest extends ProjectTestCase
 {
 	/**
 	 * Mock Entity data
 	 *
-	 * @var array<string,string|int>
+	 * @var array<string,int|string>
 	 */
 	private $data = [
 		'id'       => 1,
@@ -18,15 +21,17 @@ class EntityTest extends ProjectTestCase
 
 	/**
 	 * @dataProvider entityProvider
+	 *
+	 * @param mixed $class
 	 */
 	public function testEntityMethods($class)
 	{
 		$entity = new $class($this->data);
 
-		$this->assertEquals('id', $entity->getIdentifier());
-		$this->assertEquals($this->data['id'], $entity->getId());
-		$this->assertEquals($this->data['email'], $entity->getEmail());
-		$this->assertEquals($this->data['username'], $entity->getUsername());
+		$this->assertSame('id', $entity->getIdentifier());
+		$this->assertSame($this->data['id'], $entity->getId());
+		$this->assertSame($this->data['email'], $entity->getEmail());
+		$this->assertSame($this->data['username'], $entity->getUsername());
 		$this->assertTrue($entity->isActive());
 		$this->assertNull($entity->getName());
 	}

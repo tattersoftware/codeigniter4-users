@@ -6,7 +6,10 @@ use Tatter\Users\UserProvider;
 use Tests\Support\MockFactory;
 use Tests\Support\ProjectTestCase;
 
-class ServiceTest extends ProjectTestCase
+/**
+ * @internal
+ */
+final class ServiceTest extends ProjectTestCase
 {
 	public function testUsesFactoriesModel()
 	{

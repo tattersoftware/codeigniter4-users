@@ -1,4 +1,6 @@
-<?php namespace Tatter\Users\Factories;
+<?php
+
+namespace Tatter\Users\Factories;
 
 use Sparks\Shield\Models\UserModel;
 use Tatter\Users\Entities\ShieldEntity;
@@ -10,18 +12,17 @@ use Tatter\Users\UserFactory;
  */
 class ShieldFactory extends UserModel implements UserFactory
 {
-
-	/**
-	 * The format that the results should be returned as.
-	 *
-	 * @var string
-	 */
+    /**
+     * The format that the results should be returned as.
+     *
+     * @var string
+     */
     protected $returnType = ShieldEntity::class;
 
 	/**
 	 * Locates a user by its primary identifier.
 	 *
-	 * @param string|int $id
+	 * @param int|string $id
 	 *
 	 * @return ShieldEntity|null
 	 */
@@ -33,8 +34,6 @@ class ShieldFactory extends UserModel implements UserFactory
 	/**
 	 * Locates a user by its email.
 	 *
-	 * @param string $email
-	 *
 	 * @return ShieldEntity|null
 	 */
 	public function findByEmail(string $email): ?UserEntity
@@ -44,8 +43,6 @@ class ShieldFactory extends UserModel implements UserFactory
 
 	/**
 	 * Locates a user by its username.
-	 *
-	 * @param string $username
 	 *
 	 * @return ShieldEntity|null
 	 */

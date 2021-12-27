@@ -1,4 +1,6 @@
-<?php namespace Tatter\Users\Entities;
+<?php
+
+namespace Tatter\Users\Entities;
 
 use Myth\Auth\Entities\User;
 use Tatter\Users\Interfaces\HasGroup;
@@ -12,8 +14,6 @@ class MythEntity extends User implements HasGroup, HasPermission
 	/**
 	 * Returns the name of the column used to
 	 * uniquely identify this user, typically 'id'.
-	 *
-	 * @return string
 	 */
 	public function getIdentifier(): string
 	{
@@ -24,7 +24,7 @@ class MythEntity extends User implements HasGroup, HasPermission
 	 * Returns the value for the identifier,
 	 * or `null` for "uncreated" users.
 	 *
-	 * @return string|int|null
+	 * @return int|string|null
 	 */
 	public function getId()
 	{
@@ -33,8 +33,6 @@ class MythEntity extends User implements HasGroup, HasPermission
 
 	/**
 	 * Returns the email address.
-	 *
-	 * @return string|null
 	 */
 	public function getEmail(): ?string
 	{
@@ -43,8 +41,6 @@ class MythEntity extends User implements HasGroup, HasPermission
 
 	/**
 	 * Returns the username.
-	 *
-	 * @return string|null
 	 */
 	public function getUsername(): ?string
 	{
@@ -56,8 +52,6 @@ class MythEntity extends User implements HasGroup, HasPermission
 	 * If names are stored as parts "first",
 	 * "middle", "last" they should be
 	 * concatenated with spaces.
-	 *
-	 * @return string|null
 	 */
 	public function getName(): ?string
 	{
@@ -67,8 +61,6 @@ class MythEntity extends User implements HasGroup, HasPermission
 	/**
 	 * Returns whether this user is eligible
 	 * for authentication.
-	 *
-	 * @return bool
 	 */
 	public function isActive(): bool
 	{
@@ -80,12 +72,10 @@ class MythEntity extends User implements HasGroup, HasPermission
 	 * member of the given group.
 	 *
 	 * @param string $group The group name
-	 *
-	 * @return bool
 	 */
 	public function hasGroup(string $group): bool
 	{
-		return in_array(strtolower($group), $this->getRoles());
+		return in_array(strtolower($group), $this->getRoles(), true);
 	}
 
 	/**
@@ -93,8 +83,6 @@ class MythEntity extends User implements HasGroup, HasPermission
 	 * a certain permission.
 	 *
 	 * @param string $permission The permission name
-	 *
-	 * @return bool
 	 */
 	public function hasPermission(string $permission): bool
 	{

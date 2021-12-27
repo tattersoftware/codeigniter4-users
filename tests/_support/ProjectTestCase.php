@@ -1,8 +1,13 @@
-<?php namespace Tests\Support;
+<?php
+
+namespace Tests\Support;
 
 use CodeIgniter\Test\CIUnitTestCase;
 
-class ProjectTestCase extends CIUnitTestCase
+/**
+ * @internal
+ */
+abstract class ProjectTestCase extends CIUnitTestCase
 {
 	use TestCaseTrait;
 }
