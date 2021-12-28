@@ -23,8 +23,8 @@ final class MythEntityTest extends EntityTestCase
     /**
      * Creates the scenario for entities that implement HasGroup
      * to verify the following checks:
-     *  - $this->entity->hasGroup('Dire') === false
-     *  - $this->entity->hasGroup('Radiant') === true
+     *  - $this->entity->hasGroup('dire') === false
+     *  - $this->entity->hasGroup('radiant') === true
      */
     protected function setUpGroups(HasGroup $entity): void
     {

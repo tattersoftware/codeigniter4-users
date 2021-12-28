@@ -56,8 +56,16 @@ abstract class FactoryTestCase extends CIUnitTestCase
     {
         parent::setUp();
 
-        $this->user    = fake($this->faker);
         $this->factory = new $this->class();
+        $this->createEntity();
+    }
+
+    /**
+     * Creates the test entity.
+     */
+    protected function createEntity(): void
+    {
+        $this->user = fake($this->faker);
     }
 
     public function testId()
