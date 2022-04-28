@@ -26,7 +26,7 @@ discovery to simplify user integration into other libraries and projects.
 
 Install easily via Composer to take advantage of CodeIgniter 4's autoloading capabilities
 and always be up-to-date:
-* `> composer require tatter/workflows`
+* `> composer require tatter/users`
 
 Or, install manually by downloading the source files and adding the directory to
 `app/Config/Autoload.php`.
