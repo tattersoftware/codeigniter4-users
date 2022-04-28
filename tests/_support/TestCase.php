@@ -13,7 +13,7 @@ abstract class TestCase extends CIUnitTestCase
     /**
      * @var array<string,string>|null
      */
-    private $factoriesBackup;
+    private ?array $factoriesBackup;
 
     /**
      * Backs up factories so they can

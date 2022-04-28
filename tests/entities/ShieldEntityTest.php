@@ -1,7 +1,7 @@
 <?php
 
-use CodeIgniter\Test\DatabaseTestTrait;
 use CodeIgniter\Shield\Models\UserModel;
+use CodeIgniter\Test\DatabaseTestTrait;
 use Tatter\Users\Entities\ShieldEntity;
 use Tatter\Users\Interfaces\HasGroup;
 use Tatter\Users\Interfaces\HasPermission;

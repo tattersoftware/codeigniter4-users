@@ -2,6 +2,14 @@
 
 namespace Tatter\Users;
 
+use CodeIgniter\Model;
+use CodeIgniter\Shield\Models\UserModel as ShieldModel;
+use Fluent\Auth\Models\UserModel as FluentModel;
+use Myth\Auth\Models\UserModel as MythModel;
+use Tatter\Users\Factories\FluentFactory;
+use Tatter\Users\Factories\MythFactory;
+use Tatter\Users\Factories\ShieldFactory;
+
 /**
  * User Provider Class
  *
@@ -14,12 +22,12 @@ class UserProvider
      * Known factories. Keys are the
      * class to check availability.
      *
-     * @var array<string,string>
+     * @var array<class-string<Model>,class-string<UserFactory>>
      */
     protected static $factories = [
-        'Myth\Auth\Models\UserModel'     => Factories\MythFactory::class,
-        'Sparks\Shield\Models\UserModel' => Factories\ShieldFactory::class,
-        'Fluent\Auth\Models\UserModel'   => Factories\FluentFactory::class,
+        MythModel::class   => MythFactory::class,
+        ShieldModel::class => ShieldFactory::class,
+        FluentModel::class => FluentFactory::class,
     ];
 
     /**
