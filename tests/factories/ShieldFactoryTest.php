@@ -1,6 +1,6 @@
 <?php
 
-use Sparks\Shield\Models\UserModel;
+use CodeIgniter\Shield\Models\UserModel;
 use Tatter\Users\Factories\ShieldFactory;
 use Tatter\Users\Test\FactoryTestCase;
 

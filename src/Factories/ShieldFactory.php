@@ -2,8 +2,8 @@
 
 namespace Tatter\Users\Factories;
 
-use Sparks\Shield\Models\UserIdentityModel;
-use Sparks\Shield\Models\UserModel;
+use CodeIgniter\Shield\Models\UserIdentityModel;
+use CodeIgniter\Shield\Models\UserModel;
 use Tatter\Users\Entities\ShieldEntity;
 use Tatter\Users\UserEntity;
 use Tatter\Users\UserFactory;
