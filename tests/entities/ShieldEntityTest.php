@@ -15,7 +15,7 @@ final class ShieldEntityTest extends EntityTestCase
     // Email is an external table for Shield so we need the database
     use DatabaseTestTrait;
 
-    protected $namespace = 'Sparks\Shield';
+    protected $namespace = 'CodeIgniter\Shield';
     protected $class     = ShieldEntity::class;
 
     /**

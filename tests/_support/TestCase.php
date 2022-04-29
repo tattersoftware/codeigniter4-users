@@ -3,6 +3,7 @@
 namespace Tests\Support;
 
 use CodeIgniter\Test\CIUnitTestCase;
+use Config\Services;
 use Tatter\Users\UserProvider;
 
 /**
@@ -33,6 +34,7 @@ abstract class TestCase extends CIUnitTestCase
     {
         parent::tearDown();
 
+        Services::reset();
         UserProvider::setFactories($this->factoriesBackup);
         $this->factoriesBackup = null;
     }
