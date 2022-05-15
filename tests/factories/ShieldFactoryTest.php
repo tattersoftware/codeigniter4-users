@@ -1,14 +1,14 @@
 <?php
 
-use CodeIgniter\Shield\Authentication\Passwords;
-use CodeIgniter\Shield\Config\Auth;
+use CodeIgniter\Shield\Models\UserIdentityModel;
 use CodeIgniter\Shield\Models\UserModel;
-use Config\Services;
 use Tatter\Users\Factories\ShieldFactory;
 use Tatter\Users\Test\FactoryTestCase;
 
 /**
  * @internal
+ *
+ * @group SeparateProcess
  */
 final class ShieldFactoryTest extends FactoryTestCase
 {
@@ -19,13 +19,15 @@ final class ShieldFactoryTest extends FactoryTestCase
     // Shield uses identities not included with the faker so we have to create an email ourselves
     public function testEmail()
     {
-        Services::injectMock('passwords', new Passwords(new Auth()));
+        /** @var UserIdentityModel $identityModel */
+        $identityModel = model(UserIdentityModel::class);
 
-        $this->user->createEmailIdentity(
-            [
-                'email'    => 'jim@example.com',
-                'password' => 'secret', ],
-        );
+        $identityModel->insert([
+            'user_id' => $this->user->id,
+            'type'    => 'email_password',
+            'secret'  => 'jim@example.com',
+            'secret2' => 'hased_secret',
+        ]);
 
         parent::testEmail();
     }

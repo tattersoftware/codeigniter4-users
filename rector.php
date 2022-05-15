@@ -67,6 +67,8 @@ return static function (RectorConfig $rectorConfig): void {
     // Are there files or rules you need to skip?
     $rectorConfig->skip([
         __DIR__ . '/src/Views',
+        __DIR__ . '/src/Entities/ShieldEntity.php', // Rector incorrectly removes the method with altered return type
+        __DIR__ . '/src/Factories/FluentFactory.php', // Rector replaces the type overrides
 
         JsonThrowOnErrorRector::class,
         StringifyStrNeedlesRector::class,
@@ -112,8 +114,8 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->rule(MakeInheritedMethodVisibilitySameAsParentRector::class);
     $rectorConfig->rule(SimplifyEmptyArrayCheckRector::class);
     $rectorConfig->rule(NormalizeNamespaceByPSR4ComposerAutoloadRector::class);
-    // $rectorConfig
-    //     ->ruleWithConfiguration(TypedPropertyRector::class, [
-    //         TypedPropertyRector::INLINE_PUBLIC => true,
-    //     ]);
+    $rectorConfig
+        ->ruleWithConfiguration(TypedPropertyRector::class, [
+            TypedPropertyRector::INLINE_PUBLIC => false,
+        ]);
 };

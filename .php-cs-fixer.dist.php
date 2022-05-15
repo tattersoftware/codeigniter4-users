@@ -11,6 +11,7 @@ $finder = Finder::create()
         __DIR__ . '/tests/',
     ])
     ->exclude('build')
+    ->notPath('Factories/FluentFactory.php') // Incorrectly replaces the type overrides
     ->append([__FILE__]);
 
 $overrides = [];

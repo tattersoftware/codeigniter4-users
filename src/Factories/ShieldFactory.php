@@ -5,11 +5,10 @@ namespace Tatter\Users\Factories;
 use CodeIgniter\Shield\Models\UserIdentityModel;
 use CodeIgniter\Shield\Models\UserModel;
 use Tatter\Users\Entities\ShieldEntity;
-use Tatter\Users\UserEntity;
 use Tatter\Users\UserFactory;
 
 /**
- * Myth User Factory
+ * Shield User Factory
  */
 class ShieldFactory extends UserModel implements UserFactory
 {
@@ -24,20 +23,16 @@ class ShieldFactory extends UserModel implements UserFactory
      * Locates a user by its primary identifier.
      *
      * @param int|string $id
-     *
-     * @return ShieldEntity|null
      */
-    public function findById($id): ?UserEntity
+    public function findById($id): ?ShieldEntity
     {
         return $this->find($id);
     }
 
     /**
      * Locates a user by its email.
-     *
-     * @return ShieldEntity|null
      */
-    public function findByEmail(string $email): ?UserEntity
+    public function findByEmail(string $email): ?ShieldEntity
     {
         $identity = model(UserIdentityModel::class)->where([
             'type'   => 'email_password',
@@ -53,10 +48,8 @@ class ShieldFactory extends UserModel implements UserFactory
 
     /**
      * Locates a user by its username.
-     *
-     * @return ShieldEntity|null
      */
-    public function findByUsername(string $username): ?UserEntity
+    public function findByUsername(string $username): ?ShieldEntity
     {
         return $this->where('username', $username)->first();
     }
