@@ -2,7 +2,7 @@
 
 namespace Tatter\Users\Entities;
 
-use Sparks\Shield\Entities\User;
+use CodeIgniter\Shield\Entities\User;
 use Tatter\Users\Interfaces\HasGroup;
 use Tatter\Users\Interfaces\HasPermission;
 

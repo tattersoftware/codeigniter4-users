@@ -1,7 +1,7 @@
 <?php
 
+use CodeIgniter\Shield\Models\UserModel;
 use CodeIgniter\Test\DatabaseTestTrait;
-use Sparks\Shield\Models\UserModel;
 use Tatter\Users\Entities\ShieldEntity;
 use Tatter\Users\Interfaces\HasGroup;
 use Tatter\Users\Interfaces\HasPermission;
@@ -15,7 +15,7 @@ final class ShieldEntityTest extends EntityTestCase
     // Email is an external table for Shield so we need the database
     use DatabaseTestTrait;
 
-    protected $namespace = 'Sparks\Shield';
+    protected $namespace = 'CodeIgniter\Shield';
     protected $class     = ShieldEntity::class;
 
     /**

@@ -11,9 +11,9 @@ final class ProviderTest extends TestCase
     public function testGetFactories()
     {
         $expected = [
-            'Myth\Auth\Models\UserModel'     => 'Tatter\Users\Factories\MythFactory',
-            'Sparks\Shield\Models\UserModel' => 'Tatter\Users\Factories\ShieldFactory',
-            'Fluent\Auth\Models\UserModel'   => 'Tatter\Users\Factories\FluentFactory',
+            'Myth\Auth\Models\UserModel'          => 'Tatter\Users\Factories\MythFactory',
+            'CodeIgniter\Shield\Models\UserModel' => 'Tatter\Users\Factories\ShieldFactory',
+            'Fluent\Auth\Models\UserModel'        => 'Tatter\Users\Factories\FluentFactory',
         ];
 
         $this->assertSame($expected, UserProvider::getFactories());
@@ -31,10 +31,10 @@ final class ProviderTest extends TestCase
     public function testAddFactory()
     {
         $expected = [
-            'foo'                            => 'bar',
-            'Myth\Auth\Models\UserModel'     => 'Tatter\Users\Factories\MythFactory',
-            'Sparks\Shield\Models\UserModel' => 'Tatter\Users\Factories\ShieldFactory',
-            'Fluent\Auth\Models\UserModel'   => 'Tatter\Users\Factories\FluentFactory',
+            'foo'                                 => 'bar',
+            'Myth\Auth\Models\UserModel'          => 'Tatter\Users\Factories\MythFactory',
+            'CodeIgniter\Shield\Models\UserModel' => 'Tatter\Users\Factories\ShieldFactory',
+            'Fluent\Auth\Models\UserModel'        => 'Tatter\Users\Factories\FluentFactory',
         ];
 
         UserProvider::addFactory('foo', 'bar');
